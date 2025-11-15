@@ -1,9 +1,11 @@
 manifest:
   self:
-    path: .
+    path: zephyr-esp32s3-course
+
   remotes:
     - name: zephyrproject-rtos
       url-base: https://github.com/zephyrproject-rtos
+
   projects:
     - name: zephyr
       remote: zephyrproject-rtos
@@ -14,4 +16,5 @@ manifest:
           - cmsis
           - mbedtls
           - segger
+
   group-filter: [-optional]
