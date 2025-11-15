@@ -1,0 +1,18 @@
+# Python venv
+.venv/
+
+# Zephyr workspace metadata and sources (created by west)
+.west/
+zephyr/
+modules/
+
+# Zephyr builds
+build/
+**/build/
+
+# VS Code
+.vscode/
+
+# OS noise
+.DS_Store
+Thumbs.db
