@@ -5,6 +5,12 @@ The setup is designed so that students can get started with minimal effort.
 
 ---
 
+## Overview of the Environment
+
+The workspace root is the GitHub repo (zephyr-esp32s3-workspace), and inside it the zephyr-esp32s3-course directory contains the manifest (west.yml) and all course material. The bootstrap script creates a Python virtual environment, installs west, initializes the workspace using west init -l zephyr-esp32s3-course, and downloads Zephyr and its modules into the workspace. This structure means students can simply clone the repo, run the bootstrap script, and have a full Zephyr environment created automatically.
+
+Inside zephyr-esp32s3-course, the apps/ directory is the main home for the examples. Each app lives in its own subfolder, for example apps/welcome/, with the conventional Zephyr structure: CMakeLists.txt, prj.conf, and src/main.c (plus any extra source files). Device tree overlays or app-specific board tweaks sit in apps/<app-name>/boards/ (as we have with apps/welcome/boards/esp32s3_devkitc.overlay).
+
 # 1. First-Time Setup (Required Once)
 
 Clone the repo and run the bootstrap script.

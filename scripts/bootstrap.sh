@@ -11,13 +11,13 @@ source .venv/bin/activate
 python -m pip install --upgrade pip
 pip install west
 
-# --- Initialize west workspace using this repo as manifest ---
-west init -l .
+# --- Initialize west workspace using the course subdir as manifest ---
+west init -l zephyr-esp32s3-course
 west update
 west zephyr-export
 
 # --- Zephyr Python requirements ---
-# Zephyr tree will be at ./zephyr (inside this repo) after west update
+# Zephyr tree will be at ./zephyr (inside this workspace) after west update
 pip install -r zephyr/scripts/requirements-base.txt
 # requirements-build.txt is not present in all versions, so just ensure pyelftools exists
 pip install pyelftools
@@ -61,10 +61,11 @@ Optionally, make these permanent by adding to ~/.bashrc:
   echo 'export ZEPHYR_TOOLCHAIN_VARIANT=zephyr' >> "$HOME/.bashrc"
   echo 'export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk"' >> "$HOME/.bashrc"
 
-After installing, open a new terminal, go to the repo, activate the venv, and run your build, e.g.:
+After installing, open a new terminal, go to the workspace, activate the venv, and run your build, e.g.:
 
-  cd zephyr-esp32s3-course
+  cd zephyr-esp32s3-workspace
   source .venv/bin/activate
+  cd zephyr-esp32s3-course
   python scripts/build.py --app welcome --clean
 
 EOF
