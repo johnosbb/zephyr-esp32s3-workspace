@@ -67,3 +67,19 @@ if __name__ == "__main__":
         main()
     except subprocess.CalledProcessError as e:
         sys.exit(e.returncode)
+
+
+# Usage
+# --app <name>       Required. The application folder inside apps/
+# --clean            Deletes the build directory before rebuilding
+# --flash            Flash the firmware to the ESP32S3 after building
+# --monitor          Open Espressif’s serial monitor after flashing
+# --port <port>      Specify USB/serial port (COMx on Windows, /dev/ttyUSBx on Linux)
+# --debug            Launch GDB (only if supported by your SDK setup)
+# --board <board>    Optional override; defaults to esp32s3_devkitc/esp32s3/procpu
+# --overlay <file>   Optional overlay; defaults to app’s boards/*.overlay if present
+
+# python scripts/build.py --app welcome --clean
+# python scripts/build.py --app welcome --clean --flash
+# python scripts/build.py --app welcome --flash --monitor --port /dev/ttyUSB0
+# python scripts\build.py --app welcome --flash --monitor --port COM12
