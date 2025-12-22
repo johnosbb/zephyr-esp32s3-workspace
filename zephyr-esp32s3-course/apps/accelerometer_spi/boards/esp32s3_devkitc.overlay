@@ -1,0 +1,40 @@
+/*
+ * SSD1306 OLED on I2C0 (0x3C) for displaying acceleration.
+ * ADXL345 on SPI2 with GPIO12/11/13 for CLK/MOSI/MISO and GPIO14 as CS.
+ * INT2 wired to GPIO38 (data ready).
+ */
+
+/ {
+    chosen {
+        zephyr,display = &ssd1306_oled;
+    };
+};
+
+&i2c0 {
+    status = "okay";
+
+    ssd1306_oled: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <64>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <63>;
+        segment-remap;
+        com-invdir;
+        prechargep = <0x22>;
+    };
+
+    adxl345: adxl345@53 {
+        compatible = "adi,adxl345";
+        reg = <0x53>;
+        odr = <3>; /* 100 Hz */
+        int2-gpios = <&gpio1 38 GPIO_ACTIVE_HIGH>;
+    };
+};
+
+&spi2 {
+    status = "disabled";
+};

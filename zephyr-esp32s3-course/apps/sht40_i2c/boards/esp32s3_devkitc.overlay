@@ -1,0 +1,35 @@
+/*
+ * Route the Zephyr display chosen node to the SSD1306 on I2C0.
+ * This SSD1306 assumes the common 0x3C address for 128x64 panels.
+ * I2C0 pins on ESP32-S3 DevKitC: SDA=GPIO1, SCL=GPIO2 (default pinctrl).
+ */
+/ {
+    chosen {
+        zephyr,display = &ssd1306_oled;
+    };
+};
+
+&i2c0 {
+    status = "okay";
+
+    ssd1306_oled: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <64>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <63>;
+        segment-remap;
+        com-invdir;
+        prechargep = <0x22>;
+    };
+
+    /* Sensirion SHT4x at default address 0x44 on the same I2C bus. */
+    sht4x_0: sht4x@44 {
+        compatible = "sensirion,sht4x";
+        reg = <0x44>;
+        repeatability = <2>; /* 0=low,1=med,2=high repeatability */
+    };
+};

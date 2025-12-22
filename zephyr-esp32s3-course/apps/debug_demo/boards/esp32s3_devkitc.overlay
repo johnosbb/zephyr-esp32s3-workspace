@@ -1,0 +1,35 @@
+/*
+ * The "chosen" node tells Zephyr which hardware to use for certain
+ * core subsystems (console, shell, etc).
+ *
+ * Here we direct both the console and shell to the USB Serial/JTAG
+ * interface provided by the ESP32-S3. This is what appears as a
+ * USB CDC COM port on the host (e.g. COM12 on Windows).
+ */
+/ {
+    chosen {
+        /* zephyr,console tells Zephyr where printk() and printf() go. */
+        zephyr,console = &usb_serial;
+
+        /*
+         * zephyr,shell-uart is optional, but useful if/when you enable
+         * the Zephyr shell. It routes the shell I/O over the same USB
+         * serial interface instead of a separate UART.
+         */
+        zephyr,shell-uart = &usb_serial;
+    };
+};
+
+/*
+ * &usb_serial:
+ *
+ * This is a reference to an existing node defined in the base board
+ * devicetree describing the on-chip USB Serial/JTAG peripheral.
+ *
+ * By setting status = "okay" we tell Zephyr to enable it as a device.
+ * Combined with zephyr,console = &usb_serial above, this makes printk
+ * output appear on the USB CDC COM port on your host.
+ */
+&usb_serial {
+    status = "okay";
+};

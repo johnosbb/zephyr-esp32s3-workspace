@@ -1,0 +1,64 @@
+/* SG90 hobby servo demo: PWM on GPIO15, on-board button + LED. */
+/ {
+    aliases {
+        led0 = &onboard_led;
+        sw0 = &user_button0;
+        servo0 = &servo0;
+    };
+};
+
+&gpio0 {
+    status = "okay";
+};
+
+/* PWM output on GPIO15 using LEDC channel 0. */
+&pinctrl {
+    ledc0_ch0: ledc0_ch0 {
+        group1 {
+            pinmux = <LEDC_CH0_GPIO15>;
+            output-enable;
+        };
+    };
+};
+
+&ledc0 {
+    status = "okay";
+    pinctrl-0 = <&ledc0_ch0>;
+    pinctrl-names = "default";
+    #address-cells = <1>;
+    #size-cells = <0>;
+
+    channel0: channel0@0 {
+        reg = <0>;
+        timer = <0>;
+    };
+};
+
+/* On-board LED + user button reused from other demos. */
+/ {
+    leds {
+        compatible = "gpio-leds";
+        onboard_led: led_0 {
+            gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+            label = "User LED";
+        };
+    };
+
+    buttons {
+        compatible = "gpio-keys";
+        user_button0: button_0 {
+            gpios = <&gpio0 10 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            label = "User Button 0";
+        };
+    };
+
+    /* Servo PWM binding (50 Hz period = 20 ms, 1-2 ms pulse window). */
+    pwm_outputs {
+        compatible = "pwm-leds";
+        servo0: servo_0 {
+            /* period = 20_000_000 ns (50 Hz), flags = 0 (normal polarity) */
+            pwms = <&ledc0 0 20000000 0>;
+            label = "Servo 0";
+        };
+    };
+};
