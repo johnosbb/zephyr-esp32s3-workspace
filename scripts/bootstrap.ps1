@@ -1,5 +1,5 @@
 param(
-  [string]$SdkDir = "C:\zephyr-sdk-0.17.4"  # change if you installed elsewhere
+  [string]$SdkDir = "C:\Users\johno\zephyr-sdk-0.17.4"  # change if you installed elsewhere
 )
 
 Set-StrictMode -Version Latest

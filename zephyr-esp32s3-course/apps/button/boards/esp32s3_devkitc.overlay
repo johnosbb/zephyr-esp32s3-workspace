@@ -1,0 +1,28 @@
+/* Map aliases to the on-board LED and user button. */
+/ {
+    aliases {
+        led0 = &onboard_led;
+        sw0 = &user_button0;
+    };
+};
+
+&gpio0 { status = "okay"; };
+
+/* Board GPIO wiring: LED on GPIO8, button on GPIO10 (pull-up, active-low). */
+/ {
+    leds {
+        compatible = "gpio-leds";
+        onboard_led: led_0 {
+            gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+            label = "User LED";
+        };
+    };
+
+    buttons {
+        compatible = "gpio-keys";
+        user_button0: button_0 {
+            gpios = <&gpio0 10 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            label = "User Button 0";
+        };
+    };
+};
