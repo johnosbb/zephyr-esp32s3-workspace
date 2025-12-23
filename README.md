@@ -75,7 +75,7 @@ mv "zephyr-sdk-${SDK_VERSION}" "$HOME/zephyr-sdk"
 export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
 export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk"
 
-Or more permanently please these in your .bashrc file
+Or more permanently place these in your .bashrc file
 
 
 ```bash
