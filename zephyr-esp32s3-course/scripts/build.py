@@ -58,8 +58,9 @@ def main():
     if args.monitor:
         if not build.exists():
             sys.exit(f"Build dir not found: {build}")
-        cmd = ["west","espressif","monitor"]
-        if args.port: cmd += ["--esp-device", args.port]
+        cmd = ["west", "espressif", "monitor"]
+        if args.port:
+            cmd += ["-p", args.port]
         run(cmd, cwd=build)
 
 if __name__ == "__main__":
