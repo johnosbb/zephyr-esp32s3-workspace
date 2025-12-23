@@ -81,7 +81,7 @@ Or more permanently place these in your .bashrc file
 ```bash
 echo 'export ZEPHYR_TOOLCHAIN_VARIANT=zephyr' >> "$HOME/.bashrc"
 echo 'export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk"' >> "$HOME/.bashrc"
-````
+```
 
 Then reload your shell configuration in the current terminal:
 
