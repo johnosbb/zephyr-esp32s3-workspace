@@ -18,7 +18,7 @@ Clone the repo and run the bootstrap script.
 ## Linux / macOS
 
 ```bash
-git clone https://github.com/<your-username>/zephyr-esp32s3-course.git
+git clone https://github.com/johnosbb/zephyr-esp32s3-course.git
 cd zephyr-esp32s3-course
 ./scripts/bootstrap.sh
 ```
@@ -26,7 +26,7 @@ cd zephyr-esp32s3-course
 ## Windows (PowerShell)
 
 ```powershell
-git clone https://github.com/<your-username>/zephyr-esp32s3-course.git
+git clone https://github.com/johnosbb/zephyr-esp32s3-course.git
 cd zephyr-esp32s3-course
 .\scripts\bootstrap.ps1
 ```
