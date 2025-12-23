@@ -57,7 +57,7 @@ Choose one of the installation methods below.
 
 The course examples assume the **Zephyr SDK** is installed in your home directory.
 
-````bash
+```bash
 # Choose the SDK version you want to use (must be compatible with the Zephyr version in west.yml)
 SDK_VERSION=0.17.0
 
@@ -74,9 +74,9 @@ mv "zephyr-sdk-${SDK_VERSION}" "$HOME/zephyr-sdk"
 # Tell Zephyr to use this SDK (for this terminal session)
 export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
 export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk"
+```
 
 Or more permanently place these in your .bashrc file
-
 
 ```bash
 echo 'export ZEPHYR_TOOLCHAIN_VARIANT=zephyr' >> "$HOME/.bashrc"
@@ -105,10 +105,8 @@ echo "$ZEPHYR_SDK_INSTALL_DIR"
 
 2. Run the installer. The default path usually looks like:
 
-```
-
+```powershell
 C:\zephyr-sdk-0.17.4
-
 ```
 
 3. Set environment variables:
