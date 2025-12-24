@@ -150,7 +150,7 @@ We can also build with the '--monitor' option and this will allow us connect to 
 python scripts/build.py --app welcome --flash --monitor --port /dev/ttyACM0
 ```
 
-To exits the monitor use the ESP-IDF monitor hotkey: ```press Ctrl+]``` to exit. You can also try the menu prefix ```Ctrl+T``` then ```Ctrl+X``` to quit. 
+To exit the serial monitor use the ESP-IDF monitor hotkey: ```press Ctrl+]```. You can also try the menu prefix ```Ctrl+T``` then ```Ctrl+X``` to quit. 
 
 
 To build in PowerShell we can use: 
