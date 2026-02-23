@@ -25,9 +25,9 @@ static int draw_reading(float temp_c, float rh)
     snprintk(line1, sizeof(line1), "Temp: %.1f C", temp_c);
     snprintk(line2, sizeof(line2), "RH:   %.1f %%", rh);
 
-    cfb_print(display, "SHT40 + OLED", 2, 4);
-    cfb_print(display, line1, 2, 24);
-    cfb_print(display, line2, 2, 40);
+    cfb_print(display, "SHT40 + OLED", 2, 0);
+    cfb_print(display, line1, 2, 16);
+    cfb_print(display, line2, 2, 32);
 
     /* Finalize the buffer and push to the panel. */
     return cfb_framebuffer_finalize(display);

@@ -1,0 +1,56 @@
+/*
+ * SSD1306 OLED on I2C0 (0x3C) for display.
+ * BMP280 on SPI2 (GPIO12/11/13 for SCLK/MOSI/MISO, GPIO17 for CS).
+ */
+
+/ {
+	chosen {
+		zephyr,display = &ssd1306_oled;
+	};
+};
+
+&i2c0 {
+	status = "okay";
+
+	ssd1306_oled: ssd1306@3c {
+		compatible = "solomon,ssd1306fb";
+		reg = <0x3c>;
+		width = <128>;
+		height = <64>;
+		segment-offset = <0>;
+		page-offset = <0>;
+		display-offset = <0>;
+		multiplex-ratio = <63>;
+		segment-remap;
+		com-invdir;
+		prechargep = <0x22>;
+	};
+};
+
+/* Remap SPI2 CS to GPIO17 (hardware CS). */
+&pinctrl {
+	spim2_gpio17_default: spim2_gpio17_default {
+		group1 {
+			pinmux = <SPIM2_MISO_GPIO13>,
+				 <SPIM2_SCLK_GPIO12>,
+				 <SPIM2_CSEL_GPIO17>;
+		};
+		group2 {
+			pinmux = <SPIM2_MOSI_GPIO11>;
+			output-low;
+		};
+	};
+};
+
+&spi2 {
+	status = "okay";
+	pinctrl-0 = <&spim2_gpio17_default>;
+	pinctrl-names = "default";
+
+	bmp280: bmp280@0 {
+		compatible = "bosch,bme280";
+		reg = <0>;
+		/* BMP280 uses SPI Mode 0 (CPOL=0, CPHA=0) by default. */
+		spi-max-frequency = <100000>;
+	};
+};

@@ -1,0 +1,51 @@
+&wifi {
+	status = "okay";
+};
+
+/ {
+	aliases {
+		led0 = &onboard_led;
+		led1 = &second_led;
+	};
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&i2c0 {
+	status = "okay";
+
+	sht4x_0: sht4x@44 {
+		compatible = "sensirion,sht4x";
+		reg = <0x44>;
+		repeatability = <2>;
+	};
+};
+
+&spi2 {
+	status = "okay";
+	cs-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
+
+	mcp3008: mcp3008@0 {
+		compatible = "vnd,spi-device";
+		reg = <0>;
+		spi-max-frequency = <1000000>;
+	};
+};
+
+/ {
+	leds {
+		compatible = "gpio-leds";
+
+		onboard_led: led_0 {
+			gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+			label = "GPIO-8 LED";
+		};
+
+		second_led: led_1 {
+			gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
+			label = "GPIO-9 LED";
+		};
+	};
+};

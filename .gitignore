@@ -1,18 +1,14 @@
-# Python venv
+﻿# Python cache artifacts
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local virtual environments
 .venv/
-
-# Zephyr workspace metadata and sources (created by west)
-.west/
-zephyr/
-modules/
-
-# Zephyr builds
-build/
-**/build/
-
-# VS Code
-.vscode/
-
-# OS noise
-.DS_Store
-Thumbs.db
+venv/

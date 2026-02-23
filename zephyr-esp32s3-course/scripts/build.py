@@ -22,7 +22,7 @@ def main():
     args = p.parse_args()
 
     build = Path(args.build_dir) if args.build_dir else Path("build") / args.app
-    src = Path("apps") / args.app
+    src = repo / "apps" / args.app
 
     if args.clean and build.exists():
         if platform.system() == "Windows":
@@ -30,8 +30,29 @@ def main():
         else:
             run(["rm","-rf", str(build)])
 
+    prj_conf = src / "prj.conf"
+    conf_files = [str(prj_conf.resolve().as_posix())]
+    secrets = src / "wifi_secrets.conf"
+    wants_wifi = False
+    try:
+        prj_text = prj_conf.read_text()
+        wants_wifi = "CONFIG_WIFI_CREDENTIALS=y" in prj_text
+    except OSError:
+        pass
+
+    if wants_wifi:
+        if not secrets.exists():
+            secrets.write_text(
+                "# Local Wi-Fi credentials (not committed)\n"
+                "CONFIG_WIFI_CREDENTIALS_STATIC_SSID=\"your_ssid\"\n"
+                "CONFIG_WIFI_CREDENTIALS_STATIC_PASSWORD=\"your_password\"\n"
+            )
+            print(f"+ created {secrets}")
+        conf_files.append(str(secrets.resolve().as_posix()))
+
     west = ["west","build","-p","always","-b",args.board,"-d",str(build),str(src),
-            "--", f"-DDTC_OVERLAY_FILE={args.overlay}"]
+            "--", f"-DDTC_OVERLAY_FILE={args.overlay}",
+            f"-DCONF_FILE={';'.join(conf_files)}"]
     run(west, cwd=repo)
 
     if args.flash:
@@ -84,3 +105,4 @@ if __name__ == "__main__":
 # python scripts/build.py --app welcome --clean --flash
 # python scripts/build.py --app welcome --flash --monitor --port /dev/ttyUSB0
 # python scripts\build.py --app welcome --flash --monitor --port COM12
+# python scripts/build.py --app welcome --flash --monitor --port /dev/ttyACM0

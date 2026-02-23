@@ -23,18 +23,18 @@ static void draw_banner(void)
 
     cfb_framebuffer_clear(display, true);
 
-    /* Text lines. */
-    cfb_print(display, "Zephyr +", 2, 4);
-    cfb_print(display, "SSD1306", 2, 20);
-    cfb_print(display, "128x64 I2C", 2, 36);
+    /* Text lines (aligned to 16-row color bands). */
+    cfb_print(display, "Zephyr +", 2, 0);
+    cfb_print(display, "SSD1306", 2, 16);
+    cfb_print(display, "128x64", 2, 32);
 
     /* Simple box + crosshair graphic. */
-    const struct cfb_position box_start = {90, 2};
-    const struct cfb_position box_end = {125, 22}; /* 36x20 box area */
-    const struct cfb_position h_start = {90, 12};
-    const struct cfb_position h_end = {125, 12};
-    const struct cfb_position v_start = {108, 2};
-    const struct cfb_position v_end = {108, 22};
+    const struct cfb_position box_start = {90, 18};
+    const struct cfb_position box_end = {125, 38}; /* 36x20 box area */
+    const struct cfb_position h_start = {90, 28};
+    const struct cfb_position h_end = {125, 28};
+    const struct cfb_position v_start = {108, 18};
+    const struct cfb_position v_end = {108, 38};
 
     cfb_draw_rect(display, &box_start, &box_end);
     cfb_draw_line(display, &h_start, &h_end);

@@ -1,0 +1,7 @@
+[manifest]
+path = zephyr-esp32s3-course
+file = west.yml
+
+[zephyr]
+base = zephyr
+

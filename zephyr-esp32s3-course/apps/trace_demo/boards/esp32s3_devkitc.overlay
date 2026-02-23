@@ -1,0 +1,27 @@
+/*
+ * Route console over USB Serial/JTAG so the same port can be used for
+ * console output while JTAG remains available for debugging.
+ */
+/ {
+	aliases {
+		led0 = &led_on_gpio8;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+
+		led_on_gpio8: led_0 {
+			gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+			label = "GPIO-8 LED";
+		};
+	};
+
+	chosen {
+		zephyr,console = &usb_serial;
+		zephyr,shell-uart = &usb_serial;
+	};
+};
+
+&usb_serial {
+	status = "okay";
+};

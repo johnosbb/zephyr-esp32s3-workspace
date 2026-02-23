@@ -1,0 +1,116 @@
+/*
+ * Hardware diagnostics overlay:
+ * - SSD1306 OLED on I2C0 (0x3C)
+ * - SHT4x sensor on I2C0 (0x44)
+ * - LEDs on GPIO8/GPIO9
+ * - Button on GPIO10 (pull-up, active-low)
+ * - SG90 PWM on GPIO15 (LEDC channel 0)
+ * - MCP3008 on SPI2 (GPIO12/11/13 for SCLK/MOSI/MISO, GPIO17 for CS)
+ */
+/ {
+	aliases {
+		led0 = &onboard_led;
+		led1 = &second_led;
+		sw0 = &user_button0;
+		servo0 = &servo0;
+	};
+
+	chosen {
+		zephyr,display = &ssd1306_oled;
+	};
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&i2c0 {
+	status = "okay";
+
+	ssd1306_oled: ssd1306@3c {
+		compatible = "solomon,ssd1306fb";
+		reg = <0x3c>;
+		width = <128>;
+		height = <64>;
+		segment-offset = <0>;
+		page-offset = <0>;
+		display-offset = <0>;
+		multiplex-ratio = <63>;
+		segment-remap;
+		com-invdir;
+		prechargep = <0x22>;
+	};
+
+	sht4x_0: sht4x@44 {
+		compatible = "sensirion,sht4x";
+		reg = <0x44>;
+		repeatability = <2>;
+	};
+};
+
+&spi2 {
+	status = "okay";
+	cs-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
+
+	mcp3008: mcp3008@0 {
+		compatible = "vnd,spi-device";
+		reg = <0>;
+		spi-max-frequency = <1000000>;
+	};
+};
+
+/* PWM output on GPIO15 using LEDC channel 0. */
+&pinctrl {
+	ledc0_ch0: ledc0_ch0 {
+		group1 {
+			pinmux = <LEDC_CH0_GPIO15>;
+			output-enable;
+		};
+	};
+};
+
+&ledc0 {
+	status = "okay";
+	pinctrl-0 = <&ledc0_ch0>;
+	pinctrl-names = "default";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	channel0: channel0@0 {
+		reg = <0>;
+		timer = <0>;
+	};
+};
+
+/ {
+	leds {
+		compatible = "gpio-leds";
+
+		onboard_led: led_0 {
+			gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+			label = "GPIO-8 LED";
+		};
+
+		second_led: led_1 {
+			gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
+			label = "GPIO-9 LED";
+		};
+	};
+
+	buttons {
+		compatible = "gpio-keys";
+		user_button0: button_0 {
+			gpios = <&gpio0 10 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "User Button 0";
+		};
+	};
+
+	pwm_outputs {
+		compatible = "pwm-leds";
+		servo0: servo_0 {
+			/* period = 20_000_000 ns (50 Hz), flags = 0 */
+			pwms = <&ledc0 0 20000000 0>;
+			label = "Servo 0";
+		};
+	};
+};

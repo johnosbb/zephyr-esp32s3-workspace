@@ -1,0 +1,18 @@
+/* Minimal overlay to ensure a led0 alias exists and points at the on-board LED.
+ * Adjust the GPIO if your specific devkit LED is on a different pin.
+ */
+&{/} {
+    aliases {
+        led0 = &user_led0;
+    };
+};
+
+&gpio0 { status = "okay"; };
+
+/* Example on GPIO 48 (common on Espressif kits). Change if needed. */
+&{/} {
+    user_led0: user_led0 {
+        gpios = <&gpio0 48 GPIO_ACTIVE_HIGH>;
+        label = "User LED 0";
+    };
+};

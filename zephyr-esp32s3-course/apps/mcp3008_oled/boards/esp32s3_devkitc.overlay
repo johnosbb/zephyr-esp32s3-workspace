@@ -1,0 +1,75 @@
+/*
+ * MCP3008 + OLED overlay:
+ * - SSD1306 OLED on I2C0 (0x3C)
+ * - Button on GPIO10 (pull-up, active-low)
+ * - MCP3008 on SPI2 (GPIO12/11/13 for SCLK/MOSI/MISO, GPIO17 for CS)
+ */
+/ {
+	aliases {
+		sw0 = &user_button0;
+	};
+
+	chosen {
+		zephyr,display = &ssd1306_oled;
+	};
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&i2c0 {
+	status = "okay";
+
+	ssd1306_oled: ssd1306@3c {
+		compatible = "solomon,ssd1306fb";
+		reg = <0x3c>;
+		width = <128>;
+		height = <64>;
+		segment-offset = <0>;
+		page-offset = <0>;
+		display-offset = <0>;
+		multiplex-ratio = <63>;
+		segment-remap;
+		com-invdir;
+		prechargep = <0x22>;
+	};
+
+};
+
+/* Map SPI2 hardware CS to GPIO17. */
+&pinctrl {
+	spim2_gpio17_default: spim2_gpio17_default {
+		group1 {
+			pinmux = <SPIM2_MISO_GPIO13>,
+				 <SPIM2_SCLK_GPIO12>,
+				 <SPIM2_CSEL_GPIO17>;
+		};
+		group2 {
+			pinmux = <SPIM2_MOSI_GPIO11>;
+			output-low;
+		};
+	};
+};
+
+&spi2 {
+	status = "okay";
+	pinctrl-0 = <&spim2_gpio17_default>;
+	pinctrl-names = "default";
+
+	mcp3008: mcp3008@0 {
+		compatible = "vnd,spi-device";
+		reg = <0>;
+		spi-max-frequency = <1000000>;
+	};
+};
+
+/ {
+	buttons {
+		compatible = "gpio-keys";
+		user_button0: button_0 {
+			gpios = <&gpio0 10 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "User Button 0";
+		};
+	};
+};
