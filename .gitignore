@@ -12,3 +12,28 @@ __pycache__/
 # Local virtual environments
 .venv/
 venv/
+
+# Local agent guide
+AGENTS.md
+
+# Generated workspace/build directories
+.west/
+build/
+**/build/
+
+# CMake/Zephyr generated directories
+CMakeFiles/
+**/CMakeFiles/
+
+# CMake/Zephyr generated files
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+.config
+*.elf
+*.bin
+*.hex
+*.map
+*.log
+*.dtb
+*.dts
