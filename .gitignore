@@ -18,6 +18,8 @@ AGENTS.md
 
 # Generated workspace/build directories
 .west/
+modules/
+zephyr/
 build/
 **/build/
 
