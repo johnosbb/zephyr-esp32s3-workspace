@@ -60,11 +60,6 @@ This document is a quick index for all examples in `zephyr-esp32s3-course/apps`.
 **Other resources:**
 [Installing OCD](../installing_ocd.pdf)
 
-## `trace_demo`
-**Brief description:** Zephyr tracing demo (CTF RAM backend + Trace Compass workflow).  
-**Key files:** `CMakeLists.txt`, `prj.conf`, `src/main.c`, `README.md`, `wifi_secrets.conf`, `boards/esp32s3_devkitc.overlay`  
-**Parts used:** ESP32-S3 DevKitC, Wi-Fi network access  
-[Setting up Trace](../setting_up_trace.pdf)
 
 ## `oled_ssd1306`
 **Brief description:** Basic SSD1306 OLED output over I2C.  
@@ -106,9 +101,6 @@ This document is a quick index for all examples in `zephyr-esp32s3-course/apps`.
 <img width="2718" height="1440" alt="sg90_scope" src="https://github.com/user-attachments/assets/43b1057e-241d-4128-ae5b-0122c48d5edf" />
 
 
-
-
-
 ## `web_welcome`
 **Brief description:** Intro Wi-Fi + HTTP server example that serves a simple web page.  
 **Key files:** `CMakeLists.txt`, `prj.conf`, `src/main.c`, `README.md`, `sections-rom.ld`, `wifi_secrets.conf`, `wifi_secrets_example.conf`, `boards/esp32s3_devkitc.overlay`  
@@ -127,4 +119,9 @@ This document is a quick index for all examples in `zephyr-esp32s3-course/apps`.
 
 
 
-
+## `trace_demo`
+**Brief description:** Zephyr tracing demo (CTF RAM backend + Trace Compass workflow).  
+**Key files:** `CMakeLists.txt`, `prj.conf`, `src/main.c`, `README.md`, `wifi_secrets.conf`, `boards/esp32s3_devkitc.overlay`  
+**Parts used:** ESP32-S3 DevKitC, Wi-Fi network access  
+**Other resources:**
+[Setting up Trace](../setting_up_trace.pdf)
