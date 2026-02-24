@@ -58,13 +58,13 @@ This document is a quick index for all examples in `zephyr-esp32s3-course/apps`.
 **Key files:** `CMakeLists.txt`, `prj.conf`, `debug.conf`, `src/main.c`, `README.md`, `boards/esp32s3_devkitc.overlay`  
 **Parts used:** ESP32-S3 DevKitC, USB cable (USB Serial/JTAG)  
 **Other resources:**
-[](../installing_ocd.pdf)
+[Installing OCD](../installing_ocd.pdf)
 
 ## `trace_demo`
 **Brief description:** Zephyr tracing demo (CTF RAM backend + Trace Compass workflow).  
 **Key files:** `CMakeLists.txt`, `prj.conf`, `src/main.c`, `README.md`, `wifi_secrets.conf`, `boards/esp32s3_devkitc.overlay`  
 **Parts used:** ESP32-S3 DevKitC, Wi-Fi network access  
-[](../setting_up_trace.pdf)
+[Setting up Trace](../setting_up_trace.pdf)
 
 ## `oled_ssd1306`
 **Brief description:** Basic SSD1306 OLED output over I2C.  
