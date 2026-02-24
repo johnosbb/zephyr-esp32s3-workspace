@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guide to Course Examples</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #dbe2ea;
+      --accent: #0f766e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #eef3f9 0%, var(--bg) 100%);
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1 { margin: 0 0 8px; }
+    .lead { color: var(--muted); margin-bottom: 20px; }
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+    .toc ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      columns: 2;
+    }
+    .toc a { color: var(--accent); text-decoration: none; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      color: #0b4f4a;
+    }
+    .meta { margin: 8px 0; color: var(--muted); }
+    .files, .parts, .resources {
+      margin: 8px 0;
+      padding-left: 18px;
+    }
+    .media {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .slot {
+      border: 1px dashed #9fb3c8;
+      background: #f9fbfd;
+      border-radius: 8px;
+      padding: 10px;
+      color: var(--muted);
+      min-height: 56px;
+    }
+    code { background: #eef2f7; padding: 1px 5px; border-radius: 4px; }
+    @media (max-width: 800px) {
+      .toc ul { columns: 1; }
+      .media { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>A Guide to Course Examples</h1>
+    <p class="lead">HTML version for easier image/schematic insertion. Add files under <code>docs/assets/course_examples/&lt;app_name&gt;/</code> and reference them in each section.</p>
+
+    <section class="toc">
+      <strong>Examples</strong>
+      <ul>
+        <li><a href="#welcome">welcome</a></li>
+        <li><a href="#blinky">blinky</a></li>
+        <li><a href="#button">button</a></li>
+        <li><a href="#logging_demo">logging_demo</a></li>
+        <li><a href="#multi_thread_blinky">multi_thread_blinky</a></li>
+        <li><a href="#periodic_work">periodic_work</a></li>
+        <li><a href="#producer_consumer">producer_consumer</a></li>
+        <li><a href="#debug_demo">debug_demo</a></li>
+        <li><a href="#trace_demo">trace_demo</a></li>
+        <li><a href="#oled_ssd1306">oled_ssd1306</a></li>
+        <li><a href="#sht40_i2c">sht40_i2c</a></li>
+        <li><a href="#accelerometer_spi">accelerometer_spi</a></li>
+        <li><a href="#pressure_sensor_spi">pressure_sensor_spi</a></li>
+        <li><a href="#mcp3008_oled">mcp3008_oled</a></li>
+        <li><a href="#sg90_stepper">sg90_stepper</a></li>
+        <li><a href="#hardware_diagnostics">hardware_diagnostics</a></li>
+        <li><a href="#web_welcome">web_welcome</a></li>
+        <li><a href="#web_controller">web_controller</a></li>
+      </ul>
+    </section>
+
+    <section id="welcome" class="card"><h2>welcome</h2><p>Intro app that prints periodic logs to confirm setup.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="blinky" class="card"><h2>blinky</h2><p>Basic LED toggle example for GPIO output.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, LED</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="button" class="card"><h2>button</h2><p>Button interrupt/debounce demo controlling LED state.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, button, LED</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="logging_demo" class="card"><h2>logging_demo</h2><p>Zephyr logging configuration and message output basics.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="multi_thread_blinky" class="card"><h2>multi_thread_blinky</h2><p>Two-thread scheduling demo with independent LED blink rates.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, 2 LEDs</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="periodic_work" class="card"><h2>periodic_work</h2><p>Workqueue/timer pattern for periodic processing.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, LEDs</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="producer_consumer" class="card"><h2>producer_consumer</h2><p>Inter-thread communication with producer-consumer flow.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, LEDs</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="debug_demo" class="card"><h2>debug_demo</h2><p>GDB practice app for breakpoints and runtime inspection.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>debug.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, USB cable</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="trace_demo" class="card"><h2>trace_demo</h2><p>CTF RAM tracing workflow for Zephyr tasks and events.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>wifi_secrets.conf</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, Wi-Fi network</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>scripts/zephyr_trace_viewer.py</li></ul></section>
+    <section id="oled_ssd1306" class="card"><h2>oled_ssd1306</h2><p>OLED display output using SSD1306 over I2C.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, SSD1306 OLED</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="sht40_i2c" class="card"><h2>sht40_i2c</h2><p>Reads SHT40 temperature/humidity and displays values.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, SHT40, SSD1306 OLED</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="accelerometer_spi" class="card"><h2>accelerometer_spi</h2><p>ADXL345 acceleration sampling and OLED visualization.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, ADXL345, SSD1306 OLED</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="pressure_sensor_spi" class="card"><h2>pressure_sensor_spi</h2><p>BMP280 pressure/temperature acquisition with display output.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, BMP280, SSD1306 OLED</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="mcp3008_oled" class="card"><h2>mcp3008_oled</h2><p>MCP3008 SPI ADC sampling with OLED output.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>wifi_secrets.conf</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, MCP3008, SSD1306 OLED</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="sg90_stepper" class="card"><h2>sg90_stepper</h2><p>PWM-driven SG90 servo control state machine.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, SG90 servo, 5V supply</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="hardware_diagnostics" class="card"><h2>hardware_diagnostics</h2><p>Combined diagnostics for I2C, SPI, GPIO, PWM, display, and sensors.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, SSD1306, SHT40, MCP3008, SG90, LEDs, button</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="web_welcome" class="card"><h2>web_welcome</h2><p>Wi-Fi + HTTP server introduction serving a welcome page.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>sections-rom.ld</li><li>wifi_secrets.conf</li><li>wifi_secrets_example.conf</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, Wi-Fi network</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+    <section id="web_controller" class="card"><h2>web_controller</h2><p>Web telemetry/control app with sensor reads and LED control.</p><ul class="files"><li>CMakeLists.txt</li><li>prj.conf</li><li>src/main.c</li><li>README.md</li><li>sections-rom.ld</li><li>wifi_secrets.conf</li><li>boards/esp32s3_devkitc.overlay</li></ul><ul class="parts"><li>ESP32-S3 DevKitC, Wi-Fi, SHT40, MCP3008, LEDs</li></ul><div class="media"><div class="slot">Image placeholder</div><div class="slot">Schematic placeholder</div></div><ul class="resources"><li>Other resources: placeholder</li></ul></section>
+  </main>
+</body>
+</html>
