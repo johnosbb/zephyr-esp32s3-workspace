@@ -232,4 +232,4 @@ If all three show meaningful values, your environment is ready.
 ---
 For the full zephyr course with video instruction please follow this [link](https://www.udemy.com/course/zephyr-rtos-in-practice/?referralCode=0556AD4263382B85DA28)
 
-
+[youtube](https://www.youtube.com/watch?v=uzHDM-o6YBw)
