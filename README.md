@@ -60,18 +60,32 @@ The course examples assume the **Zephyr SDK** is installed in your home director
 ```bash
 # Choose the SDK version you want to use (must be compatible with the Zephyr version in west.yml)
 SDK_VERSION=0.17.0
+```
 
-# Download the SDK archive for Linux x86_64
+### Download the SDK archive for Linux x86_64
+
+```bash
 wget "https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${SDK_VERSION}/zephyr-sdk-${SDK_VERSION}_linux-x86_64.tar.xz"
+````
 
-# Extract and move into your home directory
+### Extract and move into your home directory
+```bash
+
 tar xf "zephyr-sdk-${SDK_VERSION}_linux-x86_64.tar.xz"
 mv "zephyr-sdk-${SDK_VERSION}" "$HOME/zephyr-sdk"
+```
 
-# Run SDK setup script (no sudo needed for a user-local install)
+### Run SDK setup script 
+
+**Note**: no sudo needed for a user-local install
+
+```bash
 "$HOME/zephyr-sdk/setup.sh"
+```
 
-# Tell Zephyr to use this SDK (for this terminal session)
+### Tell Zephyr to use this SDK (for this terminal session)
+
+```bash
 export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
 export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk"
 ```
@@ -124,14 +138,14 @@ setx ZEPHYR_SDK_INSTALL_DIR "C:\zephyr-sdk-0.17.4"
 
 Whenever you open a new terminal, activate the environment first.
 
-## Linux / macOS Activating the Environment
+### Linux / macOS Activating the Environment
 
 ```bash
 cd zephyr-esp32s3-course
 source .venv/bin/activate
 ```
 
-## Windows (PowerShell) Activating the Environment
+### Windows (PowerShell) Activating the Environment
 
 ```powershell
 cd zephyr-esp32s3-course
@@ -141,7 +155,7 @@ cd zephyr-esp32s3-course
 You can now build any course application:
 
 
-## Linux / macOS Building
+### Linux / macOS Building
 
 ```bash
 # This should be run from: zephyr-esp32s3-course\zephyr-esp32s3-course
@@ -155,7 +169,7 @@ python scripts/build.py --app welcome --flash --monitor --port /dev/ttyACM0
 ```
 
 
-## Windows (PowerShell) Building
+### Windows (PowerShell) Building
 
 For Windows this should be run from: c:\zephyr-esp32s3-course\zephyr-esp32s3-course
 
@@ -167,7 +181,7 @@ We can also build with the '--monitor' option and this will allow us connect to 
 
 ```powershell
 python scripts/build.py --app welcome --clean --flash --monitor --port COM12
-``
+```
 
 To exit the serial monitor use the ESP-IDF monitor hotkey: ```press Ctrl+]```. You can also try the menu prefix ```Ctrl+T``` then ```Ctrl+X``` to quit. 
 ---
