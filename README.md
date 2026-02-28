@@ -1,5 +1,7 @@
 # Development Environment Setup
 
+<img width="1092" height="802" alt="image" src="https://github.com/user-attachments/assets/17075545-ecb8-49ec-af17-ea1d80bb9696" />
+
 This course uses **Zephyr**, **west**, and a **Python virtual environment**.  
 The setup is designed so that students can get started with minimal effort.
 
