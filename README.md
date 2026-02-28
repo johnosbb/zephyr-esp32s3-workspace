@@ -69,8 +69,8 @@ wget "https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${SDK_VERS
 ````
 
 ### Extract and move into your home directory
-```bash
 
+```bash
 tar xf "zephyr-sdk-${SDK_VERSION}_linux-x86_64.tar.xz"
 mv "zephyr-sdk-${SDK_VERSION}" "$HOME/zephyr-sdk"
 ```
@@ -110,7 +110,6 @@ echo "$ZEPHYR_TOOLCHAIN_VARIANT"
 echo "$ZEPHYR_SDK_INSTALL_DIR"
 ```
 
----
 
 ### Windows — Standard Install
 
@@ -132,7 +131,6 @@ setx ZEPHYR_SDK_INSTALL_DIR "C:\zephyr-sdk-0.17.4"
 
 4. Close PowerShell and open a **new** PowerShell window so the variables take effect.
 
----
 
 ## Everyday Usage (After the First Setup)
 
