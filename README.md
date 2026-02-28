@@ -182,7 +182,7 @@ python scripts/build.py --app welcome --clean --flash --monitor --port COM12
 ```
 
 To exit the serial monitor use the ESP-IDF monitor hotkey: ```press Ctrl+]```. You can also try the menu prefix ```Ctrl+T``` then ```Ctrl+X``` to quit. 
----
+
 
 ## When Should You Re-Run Bootstrap?
 
@@ -194,7 +194,7 @@ Only run the bootstrap script again if:
 
 For normal use, **do not** rerun bootstrap.
 
----
+
 
 ## Quick Environment Checks
 
