@@ -15,6 +15,7 @@ venv/
 
 # Local agent guide
 AGENTS.md
+AGENT.md
 
 # Generated workspace/build directories
 .west/
