@@ -227,4 +227,6 @@ echo $env:ZEPHYR_TOOLCHAIN_VARIANT
 echo $env:ZEPHYR_SDK_INSTALL_DIR
 ```
 
+For the full zephyr course with video instruction please follow this [link](https://www.udemy.com/course/zephyr-rtos-in-practice/?referralCode=0556AD4263382B85DA28)
+
 If all three show meaningful values, your environment is ready.
