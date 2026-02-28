@@ -141,6 +141,7 @@ cd zephyr-esp32s3-course
 You can now build any course application:
 
 ```bash
+# This should be run from: C:\zephyr-esp32s3-course\zephyr-esp32s3-course>
 python scripts/build.py --app welcome --clean --flash
 ```
 
