@@ -11,7 +11,7 @@ The workspace root is the GitHub repo (zephyr-esp32s3-workspace), and inside it 
 
 Inside zephyr-esp32s3-course, the apps/ directory is the main home for the examples. Each app lives in its own subfolder, for example apps/welcome/, with the conventional Zephyr structure: CMakeLists.txt, prj.conf, and src/main.c (plus any extra source files). Device tree overlays or app-specific board tweaks sit in apps/<app-name>/boards/ (as we have with apps/welcome/boards/esp32s3_devkitc.overlay).
 
-# 1. First-Time Setup (Required Once)
+## First-Time Setup (Required Once)
 
 Clone the repo and run the bootstrap script.
 
@@ -45,7 +45,7 @@ You can build and flash apps in the same terminal immediately after bootstrap co
 
 ---
 
-# 2. Installing the Zephyr SDK (Only If Requested)
+## Installing the Zephyr SDK (Only If Requested)
 
 If the bootstrap script cannot find the SDK, it prints instructions.
 
@@ -53,7 +53,7 @@ Choose one of the installation methods below.
 
 ---
 
-## Linux x86_64: Install Zephyr SDK with wget (recommended)
+### Linux x86_64: Install Zephyr SDK with wget (recommended)
 
 The course examples assume the **Zephyr SDK** is installed in your home directory.
 
@@ -98,7 +98,7 @@ echo "$ZEPHYR_SDK_INSTALL_DIR"
 
 ---
 
-## Windows — Standard Install
+### Windows — Standard Install
 
 1. Download the Windows SDK installer (`.exe`) from:
    https://github.com/zephyrproject-rtos/sdk-ng/releases
@@ -120,18 +120,18 @@ setx ZEPHYR_SDK_INSTALL_DIR "C:\zephyr-sdk-0.17.4"
 
 ---
 
-# 3. Everyday Usage (After the First Setup)
+## Everyday Usage (After the First Setup)
 
 Whenever you open a new terminal, activate the environment first.
 
-## Linux / macOS
+## Linux / macOS Activating the Environment
 
 ```bash
 cd zephyr-esp32s3-course
 source .venv/bin/activate
 ```
 
-## Windows (PowerShell)
+## Windows (PowerShell) Activating the Environment
 
 ```powershell
 cd zephyr-esp32s3-course
@@ -140,8 +140,11 @@ cd zephyr-esp32s3-course
 
 You can now build any course application:
 
+
+## Linux / macOS Building
+
 ```bash
-# This should be run from: C:\zephyr-esp32s3-course\zephyr-esp32s3-course>
+# This should be run from: zephyr-esp32s3-course\zephyr-esp32s3-course
 python scripts/build.py --app welcome --clean --flash
 ```
 
@@ -151,18 +154,25 @@ We can also build with the '--monitor' option and this will allow us connect to 
 python scripts/build.py --app welcome --flash --monitor --port /dev/ttyACM0
 ```
 
-To exit the serial monitor use the ESP-IDF monitor hotkey: ```press Ctrl+]```. You can also try the menu prefix ```Ctrl+T``` then ```Ctrl+X``` to quit. 
 
+## Windows (PowerShell) Building
 
-To build in PowerShell we can use: 
+For Windows this should be run from: c:\zephyr-esp32s3-course\zephyr-esp32s3-course
 
 ```powershell
 python scripts/build.py --app welcome --clean --flash
 ```
 
+We can also build with the '--monitor' option and this will allow us connect to the board after it reboots with the newly flashed software.
+
+```powershell
+python scripts/build.py --app welcome --clean --flash --monitor --port COM12
+``
+
+To exit the serial monitor use the ESP-IDF monitor hotkey: ```press Ctrl+]```. You can also try the menu prefix ```Ctrl+T``` then ```Ctrl+X``` to quit. 
 ---
 
-# 4. When Should You Re-Run Bootstrap?
+## When Should You Re-Run Bootstrap?
 
 Only run the bootstrap script again if:
 
@@ -174,7 +184,7 @@ For normal use, **do not** rerun bootstrap.
 
 ---
 
-# 5. Quick Environment Checks
+## Quick Environment Checks
 
 After activating your environment, you can verify everything is set up:
 
