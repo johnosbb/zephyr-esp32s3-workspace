@@ -1,6 +1,7 @@
 # Development Environment Setup
 
-<img width="1092" height="802" alt="image" src="https://github.com/user-attachments/assets/17075545-ecb8-49ec-af17-ea1d80bb9696" />
+
+[![Alt Text](https://github.com/user-attachments/assets/17075545-ecb8-49ec-af17-ea1d80bb9696)]([https://your-destination-link.com](https://www.udemy.com/course/zephyr-rtos-in-practice/?referralCode=0556AD4263382B85DA28))
 
 ---
 
