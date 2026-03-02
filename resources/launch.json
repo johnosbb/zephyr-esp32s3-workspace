@@ -1,0 +1,49 @@
+{
+    "configurations": [
+        {
+            "name": "Debug ESP32-S3 Input",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${input:elfPath}",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd":  "${workspaceFolder}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "c:/users/johno/zephyr-sdk-0.17.4/xtensa-espressif_esp32s3_zephyr-elf/bin/xtensa-espressif_esp32s3_zephyr-elf-gdb.exe",
+            "miDebuggerServerAddress": "localhost:3333",
+            "setupCommands": [
+                {
+                    "description": "Pretty print for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+        "name": "debug_demo",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/zephyr-esp32s3-course/build/debug_demo/zephyr/zephyr.elf",
+        "args": [],
+        "stopAtEntry": true,
+        "cwd": "${workspaceFolder}/zephyr-esp32s3-course",
+        "MIMode": "gdb",
+        "miDebuggerPath": "C:/Users/johno/zephyr-sdk-0.17.4/xtensa-espressif_esp32s3_zephyr-elf/bin/xtensa-espressif_esp32s3_zephyr-elf-gdb.exe",
+        "miDebuggerServerAddress": "localhost:3333",
+        "setupCommands": [
+            {
+            "description": "Pretty print for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+            }
+        ]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "elfPath",
+            "type": "promptString",
+            "description": "Enter the path to the ELF file",
+        }
+    ]
+}
