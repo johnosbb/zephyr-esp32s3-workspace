@@ -118,24 +118,6 @@ fails. By itself the warning is informational.
 
 ---
 
-## What is **not** on this list
-
-Anything else — assume it is real until you have proven otherwise. In
-particular, treat each of these as noteworthy:
-
-- `-Wmaybe-uninitialized`, `-Wuninitialized`
-- `-Wformat=` (printf-family type mismatches)
-- `-Wunused-variable`, `-Wunused-function` (cosmetic, but worth removing
-  before finalising the demo — see `engineering_rules.md` rule 5)
-- Any `dtc` warning that names a node you wrote
-- Any `CMake Error`, `fatal error`, or non-zero exit from `west build`
-
-When in doubt, build with `--clean` and read the output end-to-end:
-
-```bash
-# from manifest repo with .venv activated
-python scripts/build.py --app <name> --clean
-```
 
 If the only warnings present are the four documented above, the build
 is clean. Anything else needs a closer look.
