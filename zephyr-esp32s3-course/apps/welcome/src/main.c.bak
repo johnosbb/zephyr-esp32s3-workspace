@@ -1,8 +1,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(welcome);
-//LOG_MODULE_REGISTER(welcome,LOG_LEVEL_INF); // note: this will override any settings in prj.conf
+LOG_MODULE_REGISTER(welcome, LOG_LEVEL_INF);
 
 int main(void)
 {

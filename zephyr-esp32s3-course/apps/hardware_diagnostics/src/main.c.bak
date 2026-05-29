@@ -194,8 +194,7 @@ int main(void)
 		gpio_pin_set_dt(&led1, !led_state);
 
 		int btn = gpio_pin_get_dt(&button);
-		/* Logical level: non-zero = pressed (DT handles GPIO_ACTIVE_LOW). */
-		bool button_pressed = (btn != 0);
+		bool button_pressed = (btn == 0);
 
 		if (button_pressed && !last_button_pressed) {
 			adc_channel = (adc_channel + 1) % 8;

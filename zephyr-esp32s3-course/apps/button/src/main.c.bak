@@ -28,13 +28,8 @@ static void debounce_work_handler(struct k_work *work)
         return;
     }
 
-    /* gpio_pin_get_dt() returns the LOGICAL level, not the raw voltage: it has
-     * already applied the GPIO_ACTIVE_LOW inversion from the devicetree.
-     * So 1 = active (pressed), 0 = inactive (released). Use the raw accessor
-     * gpio_pin_get_raw() if you ever need the actual electrical level instead.
-     * (Thanks to Marc Binderberger for catching the inverted test here.)
-     */
-    bool pressed_now = (val != 0);
+    /* Active-low input: 0 means the button is held. */
+    bool pressed_now = (val == 0);
 
     if (pressed_now && !press_latched)
     {

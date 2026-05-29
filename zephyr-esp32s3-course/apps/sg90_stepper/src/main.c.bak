@@ -93,7 +93,7 @@ static void debounce_work_handler(struct k_work *work)
         return;
     }
 
-    bool pressed_now = (val != 0); /* logical level: non-zero = pressed */
+    bool pressed_now = (val == 0); /* active-low button */
 
     if (pressed_now && !press_latched) {
         press_latched = true;
