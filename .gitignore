@@ -28,6 +28,11 @@ build/
 CMakeFiles/
 **/CMakeFiles/
 
+# Editor / backup files
+*.bak
+*~
+*.orig
+
 # CMake/Zephyr generated files
 CMakeCache.txt
 cmake_install.cmake
