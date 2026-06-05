@@ -57,6 +57,11 @@ int main(void)
         return 0;
     }
 
+    /*
+     * These contexts must outlive main(): the blink threads keep dereferencing
+     * &ctx0/&ctx1 after main() returns, so they need static (not automatic)
+     * storage duration. Dropping `static` here would leave dangling pointers.
+     */
     static struct blink_ctx ctx0 = {
         .led = &led0,
         .interval_ms = 300,

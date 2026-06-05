@@ -8,15 +8,15 @@
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
 
-/* 1000 msec = 1 sec */
+/* 2000 msec = 2 sec */
 #define SLEEP_TIME_MS 2000
 
 /* The devicetree node identifier for the "led0" alias. */
 #define LED0_NODE DT_ALIAS(led0)
 
 /*
- * A build error on this line means your board is unsupported.
- * See the sample documentation for information on how to fix this.
+ * A build error on this line means the board has no "led0" alias.
+ * Define one in boards/esp32s3_devkitc.overlay (see this app's overlay).
  */
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 
@@ -27,12 +27,14 @@ int main(void)
 
     if (!gpio_is_ready_dt(&led))
     {
+        printf("LED GPIO device not ready\n");
         return 0;
     }
 
     ret = gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE);
     if (ret < 0)
     {
+        printf("Failed to configure LED GPIO (%d)\n", ret);
         return 0;
     }
 
@@ -41,6 +43,7 @@ int main(void)
         ret = gpio_pin_toggle_dt(&led);
         if (ret < 0)
         {
+            printf("Failed to toggle LED GPIO (%d)\n", ret);
             return 0;
         }
 

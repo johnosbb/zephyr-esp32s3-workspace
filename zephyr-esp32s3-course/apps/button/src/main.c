@@ -38,7 +38,12 @@ static void debounce_work_handler(struct k_work *work)
 
     if (pressed_now && !press_latched)
     {
-        gpio_pin_toggle_dt(&led);
+        int rc = gpio_pin_toggle_dt(&led);
+        if (rc < 0)
+        {
+            LOG_ERR("Failed to toggle LED (%d)", rc);
+            return;
+        }
         LOG_INF("Button pressed; toggling LED");
         press_latched = true;
     }
@@ -81,12 +86,10 @@ int main(void)
         return 0;
     }
 
-    /* Use both edges: press starts debounce, release clears the latch. */
-    if (gpio_pin_interrupt_configure_dt(&button, GPIO_INT_EDGE_BOTH) < 0)
-    {
-        LOG_ERR("Failed to enable button interrupt");
-        return 0;
-    }
+    /* Initialize the work item BEFORE anything can trigger it: the ISR
+     * reschedules this work, so it must exist before the interrupt is armed.
+     */
+    k_work_init_delayable(&debounce_work, debounce_work_handler);
 
     gpio_init_callback(&button_cb_data, button_pressed, BIT(button.pin));
     if (gpio_add_callback(button.port, &button_cb_data) < 0)
@@ -95,9 +98,15 @@ int main(void)
         return 0;
     }
 
-    /* Initialize after the callback is registered to avoid races. */
-    k_work_init_delayable(&debounce_work, debounce_work_handler);
-
+    /* Arm the interrupt LAST. Once enabled, a press can fire at any instant,
+     * so the work item and callback above must already be initialized.
+     * Use both edges: press starts debounce, release clears the latch.
+     */
+    if (gpio_pin_interrupt_configure_dt(&button, GPIO_INT_EDGE_BOTH) < 0)
+    {
+        LOG_ERR("Failed to enable button interrupt");
+        return 0;
+    }
     LOG_INF("Button demo ready; press the button to toggle the LED.");
 
     while (1)

@@ -16,3 +16,7 @@
         label = "User LED 0";
     };
 };
+
+&flash0 {
+	reg = <0x0 DT_SIZE_M(16)>;
+};
