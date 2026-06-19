@@ -134,15 +134,17 @@ int main(void)
         return 0;
     }
 
-    if (gpio_pin_interrupt_configure_dt(&button, GPIO_INT_EDGE_BOTH) < 0) {
-        LOG_ERR("Button interrupt init failed");
-        return 0;
-    }
+    /* Initialize the work item before anything can trigger it. */
+    k_work_init_delayable(&debounce_work, debounce_work_handler);
 
     gpio_init_callback(&button_cb_data, button_pressed, BIT(button.pin));
     gpio_add_callback(button.port, &button_cb_data);
 
-    k_work_init_delayable(&debounce_work, debounce_work_handler);
+    /* Arm the interrupt last, after the work item and callback are ready. */
+    if (gpio_pin_interrupt_configure_dt(&button, GPIO_INT_EDGE_BOTH) < 0) {
+        LOG_ERR("Button interrupt init failed");
+        return 0;
+    }
 
     /* Start idle. */
     apply_state(SERVO_OFF);

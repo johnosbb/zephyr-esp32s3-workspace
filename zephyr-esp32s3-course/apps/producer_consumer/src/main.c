@@ -23,8 +23,14 @@ struct msg {
 #define MSGQ_LEN 8
 K_MSGQ_DEFINE(msgq, sizeof(struct msg), MSGQ_LEN, 4);
 
-K_THREAD_STACK_DEFINE(prod_stack, 1024);
-K_THREAD_STACK_DEFINE(cons_stack, 1024);
+/*
+ * 2048 bytes, not 1024: both threads call LOG_INF() each iteration, and on
+ * Xtensa (ESP32-S3) register-window spills plus the logging format path could
+ * push stack usage past 1 KB, where a 1 KB stack may overflow. Usage also
+ * shifts with the Zephyr SDK / GCC version, so leave headroom.
+ */
+K_THREAD_STACK_DEFINE(prod_stack, 2048);
+K_THREAD_STACK_DEFINE(cons_stack, 2048);
 static struct k_thread prod_thread;
 static struct k_thread cons_thread;
 

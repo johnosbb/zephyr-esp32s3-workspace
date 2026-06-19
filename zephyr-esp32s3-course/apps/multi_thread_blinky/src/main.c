@@ -20,9 +20,17 @@ struct blink_ctx {
     const char *name;
 };
 
-/* Thread stacks and priorities (lower number = higher priority). */
-K_THREAD_STACK_DEFINE(led0_stack, 1024);
-K_THREAD_STACK_DEFINE(led1_stack, 1024);
+/*
+ * Thread stacks and priorities (lower number = higher priority).
+ *
+ * 2048 bytes per thread, not 1024: each blink thread calls LOG_INF() every
+ * iteration, and on Xtensa (ESP32-S3) register-window spills plus the logging
+ * format path could push stack usage past 1 KB. A 1 KB stack may overflow here - the
+ * classic "LED blinks once, then the thread faults" symptom. Stack usage also
+ * varies with the Zephyr SDK / GCC version, so leave generous headroom.
+ */
+K_THREAD_STACK_DEFINE(led0_stack, 2048);
+K_THREAD_STACK_DEFINE(led1_stack, 2048);
 static struct k_thread led0_thread;
 static struct k_thread led1_thread;
 
